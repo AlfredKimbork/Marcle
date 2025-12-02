@@ -40,6 +40,17 @@ body {
                 -.375rem .25rem #333;
 }
 
+.check {
+    animation: .4s ease-in check
+}
+
+@keyframes check {
+    50% {
+        transform: translate(-.5rem, .5rem);
+        box-shadow: none;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .grey {
         background: #d7d7de;

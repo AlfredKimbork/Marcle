@@ -47,11 +47,10 @@ const checkWord = () => {
     });
     guessedLetters.forEach((guessedLetter, i) => {
         if (guessedLetter.innerText == word[i]) {
-            guessedLetter.classList.add("green");
+            guessedLetter.classList.add("green", "check");
             keyboardBtns.forEach(btn => {
-                // console.log(btn.id, `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
                 if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
-                    btn.classList.add("green");
+                    btn.classList.add("green", "check");
             });
             missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], "");
             guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
@@ -62,22 +61,23 @@ const checkWord = () => {
     j = 0;
     guessedLetters.forEach((guessedLetter) => {
         if (missingLetters.includes(guessedLetter.innerText)) {
-            missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], "");
-            guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
-            guessedLetter.classList.add("yellow");
+            guessedLetter.classList.add("yellow", "check");
             keyboardBtns.forEach(btn => {
                 if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
-                    btn.classList.add("yellow");
+                    btn.classList.add("yellow", "check");
             });
-            amountDeleted++;
+            missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
+            guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
             j++;
+            amountDeleted++;
         }
         else {
-            guessedLetter.classList.add("grey");
+            guessedLetter.classList.add("grey", "check");
             keyboardBtns.forEach(btn => {
                 if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
-                    btn.classList.add("grey");
+                    btn.classList.add("grey", "check");
             });
+            j++;
         }
     });
     row++;
