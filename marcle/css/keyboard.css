@@ -1,0 +1,53 @@
+.keyboard-wrapper > div {
+    display: flex;
+    gap: .75rem;
+    justify-content: center;
+
+    margin-block: .75rem ;
+}
+
+.keyboard-btn {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    
+    border-radius: .5rem;
+    border: 2px solid #333;
+    box-shadow: -.25rem .25rem  #8f8fff, 
+    -.25rem .375rem #333,
+    -.375rem .25rem #333;
+
+    background-color: #ebebeb;
+}
+
+.keyboard-btn > img {
+    pointer-events: none;
+}
+
+.--delete, .--enter {
+    width: 6rem;
+}
+
+@media screen and (max-width: 500px) {
+    .keyboard-btn {
+        font-size: 1rem;
+
+        width: 1.5rem;
+        height: 3rem;
+
+        box-shadow: -.125rem .125rem  #8f8fff, 
+                    -.125rem .25rem #333,
+                    -.25rem .125rem #333;
+    }
+
+    .keyboard-btn > img {
+        transform: scale(.5);
+    }
+
+    .--delete, .--enter {
+        width: 3rem;
+    }
+}
