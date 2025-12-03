@@ -8,9 +8,12 @@
 
 .keyboard-btn {
     font-size: 2rem;
+    color: #333;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 4rem;
     height: 4rem;
     

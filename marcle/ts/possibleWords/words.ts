@@ -1,4 +1,4 @@
-const possibleWords = [
+export const possibleWords = [
     "about",
     "above",
     "abuse",
@@ -233,5 +233,5 @@ const possibleWords = [
 ]
 
 export const getWord = () => {
-    return possibleWords[(Math.round(Math.random() * 231))]
+    return possibleWords[(Math.round(Math.random() * possibleWords.length))] as string
 }

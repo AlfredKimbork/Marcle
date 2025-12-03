@@ -1,18 +1,24 @@
-import { getWord } from "./possibleWords/words.js";
+import { getWord, possibleWords } from "./possibleWords/words.js";
+// import { createMarc } from "./marcAI.js";
 const wordleBody = document.querySelector("#wordle-wrapper") as HTMLDivElement;
 const keyboardBtns = document.querySelectorAll(".keyboard-btn") as NodeListOf<HTMLButtonElement>;
 let currentCell: HTMLSpanElement
 let column = 0;
 let row = 0;
-let word = getWord();
-console.log(word)
+export const word = getWord();
+console.log(word, possibleWords.indexOf(word))
+
+export let yellows: string[] = [];
+export let greens: {"letter":string, "position": number}[] = [];
+export let greys: {"letter":string, "position": number}[] = [];
+
 const addLocation = (cell: HTMLSpanElement) => {
     cell.classList.add(`row-${row}`);
     cell.classList.add(`column-${column}`);
     column++;
 }
 
-const moveMarked = () => {
+export const moveMarked = () => {
     currentCell.classList.remove("current");
     let markedColumn = column
 
@@ -23,11 +29,18 @@ const moveMarked = () => {
     currentCell.classList.add("current");
 }
 
-const addLetter = (e: string) => {
+export const addLetter = (e: string) => {
     if(column == 5) column = 4
     
     currentCell = document.querySelector(`.row-${row}.column-${column}`) as HTMLSpanElement;
     currentCell.innerText = e;
+
+    keyboardBtns.forEach(btn => {
+        if (btn.id == `Key${e.toLocaleUpperCase()}`) btn.classList.add("check");
+        setTimeout(() => {
+            btn.classList.remove("check");
+        }, 500)
+    })
     
     column++;
 }
@@ -38,8 +51,16 @@ const deleteLetter = () => {
 
     let currentCell = document.querySelector(`.row-${row}.column-${column}`) as HTMLSpanElement;
     currentCell.innerText = "";
+
+    keyboardBtns.forEach(btn => {
+        if (btn.id == "backspace") btn.classList.add("check");
+        setTimeout(() => {
+            btn.classList.remove("check");
+        }, 500)
+    })
 } 
-const checkWord = () => {
+export const checkWord = () => {
+    // yellows = []
     let guessedLetters = document.querySelectorAll(`.row-${row}`) as NodeListOf<HTMLSpanElement>;
     let guessedWord = "";
     let missingLetters = word;
@@ -55,40 +76,77 @@ const checkWord = () => {
         if (guessedLetter.innerText == word[i]) {
             guessedLetter.classList.add("green", "check");
 
-            keyboardBtns.forEach(btn => {
-                if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("green", "check");
-            })
+                keyboardBtns.forEach(btn => {
+                    if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("green", "check");
+                })
+                
+                missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], "");
+                guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
+                greens.push({"letter": guessedLetter.innerText, "position": i})
 
-            missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], "");
-            guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
-
-            amountDeleted++;
-            j++;
-        } 
-    });
-
-    j = 0;
-    guessedLetters.forEach((guessedLetter) => {
-        if (missingLetters.includes(guessedLetter.innerText)) {
-            guessedLetter.classList.add("yellow", "check");
-            keyboardBtns.forEach(btn => {
-                if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("yellow", "check");
-            })
-
-            missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
-            guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
+                
+                amountDeleted++;
+                j++;
+            } else if (missingLetters.includes(guessedLetter.innerText)) {
+                guessedLetter.classList.add("yellow", "check");
+                keyboardBtns.forEach(btn => {
+                    if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("yellow", "check");
+                })
     
-            j++
-            amountDeleted++
-        } else {
-            guessedLetter.classList.add("grey", "check");
-            keyboardBtns.forEach(btn => {
-                if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("grey", "check");
-            });
+                missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
+                guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
+    
+                yellows.push(guessedLetter.innerText)
+        
+                j++
+                amountDeleted++
+            } else {
+                guessedLetter.classList.add("grey", "check");
+                keyboardBtns.forEach(btn => {
+                    greys.push({"letter": guessedLetter.innerText, "position": i})
+                    if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("grey", "check");
+                });
+    
+                j++
+            }
+            // {
+            //     j++
+            // }
+        });
 
-            j++
-        }
-    });
+    // j = 0;
+    // guessedLetters.forEach(guessedLetter => {
+        
+    //     if (missingLetters.includes(guessedLetter.innerText)) {
+    //         guessedLetter.classList.add("yellow", "check");
+    //         keyboardBtns.forEach(btn => {
+    //             if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("yellow", "check");
+    //         })
+
+    //         missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
+    //         guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
+
+    //         yellows.push(guessedLetter.innerText)
+    
+    //         j++
+    //         amountDeleted++
+    //     } else {
+    //         guessedLetter.classList.add("grey", "check");
+    //         keyboardBtns.forEach(btn => {
+    //             grey.push({"letter": guessedLetter.innerText, "position": i})
+    //             if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("grey", "check");
+    //         });
+
+    //         j++
+    //     }
+    // });
+
+    keyboardBtns.forEach(btn => {
+        if (btn.id == "enter") btn.classList.add("check");
+        setTimeout(() => {
+            btn.classList.remove("check");
+        }, 500)
+    })
     row++;
     column = 0;
 }

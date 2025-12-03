@@ -1,17 +1,21 @@
-import { getWord } from "./possibleWords/words.js";
+import { getWord, possibleWords } from "./possibleWords/words.js";
+// import { createMarc } from "./marcAI.js";
 const wordleBody = document.querySelector("#wordle-wrapper");
 const keyboardBtns = document.querySelectorAll(".keyboard-btn");
 let currentCell;
 let column = 0;
 let row = 0;
-let word = getWord();
-console.log(word);
+export const word = getWord();
+console.log(word, possibleWords.indexOf(word));
+export let yellows = [];
+export let greens = [];
+export let greys = [];
 const addLocation = (cell) => {
     cell.classList.add(`row-${row}`);
     cell.classList.add(`column-${column}`);
     column++;
 };
-const moveMarked = () => {
+export const moveMarked = () => {
     currentCell.classList.remove("current");
     let markedColumn = column;
     if (column == 5) {
@@ -22,11 +26,18 @@ const moveMarked = () => {
     currentCell = document.querySelector(`.row-${row}.column-${markedColumn}`);
     currentCell.classList.add("current");
 };
-const addLetter = (e) => {
+export const addLetter = (e) => {
     if (column == 5)
         column = 4;
     currentCell = document.querySelector(`.row-${row}.column-${column}`);
     currentCell.innerText = e;
+    keyboardBtns.forEach(btn => {
+        if (btn.id == `Key${e.toLocaleUpperCase()}`)
+            btn.classList.add("check");
+        setTimeout(() => {
+            btn.classList.remove("check");
+        }, 500);
+    });
     column++;
 };
 const deleteLetter = () => {
@@ -35,8 +46,16 @@ const deleteLetter = () => {
         column = 0;
     let currentCell = document.querySelector(`.row-${row}.column-${column}`);
     currentCell.innerText = "";
+    keyboardBtns.forEach(btn => {
+        if (btn.id == "backspace")
+            btn.classList.add("check");
+        setTimeout(() => {
+            btn.classList.remove("check");
+        }, 500);
+    });
 };
-const checkWord = () => {
+export const checkWord = () => {
+    // yellows = []
     let guessedLetters = document.querySelectorAll(`.row-${row}`);
     let guessedWord = "";
     let missingLetters = word;
@@ -54,13 +73,11 @@ const checkWord = () => {
             });
             missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], "");
             guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
+            greens.push({ "letter": guessedLetter.innerText, "position": i });
             amountDeleted++;
             j++;
         }
-    });
-    j = 0;
-    guessedLetters.forEach((guessedLetter) => {
-        if (missingLetters.includes(guessedLetter.innerText)) {
+        else if (missingLetters.includes(guessedLetter.innerText)) {
             guessedLetter.classList.add("yellow", "check");
             keyboardBtns.forEach(btn => {
                 if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
@@ -68,17 +85,50 @@ const checkWord = () => {
             });
             missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
             guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
+            yellows.push(guessedLetter.innerText);
             j++;
             amountDeleted++;
         }
         else {
             guessedLetter.classList.add("grey", "check");
             keyboardBtns.forEach(btn => {
+                greys.push({ "letter": guessedLetter.innerText, "position": i });
                 if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
                     btn.classList.add("grey", "check");
             });
             j++;
         }
+        // {
+        //     j++
+        // }
+    });
+    // j = 0;
+    // guessedLetters.forEach(guessedLetter => {
+    //     if (missingLetters.includes(guessedLetter.innerText)) {
+    //         guessedLetter.classList.add("yellow", "check");
+    //         keyboardBtns.forEach(btn => {
+    //             if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("yellow", "check");
+    //         })
+    //         missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
+    //         guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
+    //         yellows.push(guessedLetter.innerText)
+    //         j++
+    //         amountDeleted++
+    //     } else {
+    //         guessedLetter.classList.add("grey", "check");
+    //         keyboardBtns.forEach(btn => {
+    //             grey.push({"letter": guessedLetter.innerText, "position": i})
+    //             if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`) btn.classList.add("grey", "check");
+    //         });
+    //         j++
+    //     }
+    // });
+    keyboardBtns.forEach(btn => {
+        if (btn.id == "enter")
+            btn.classList.add("check");
+        setTimeout(() => {
+            btn.classList.remove("check");
+        }, 500);
     });
     row++;
     column = 0;
