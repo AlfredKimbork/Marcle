@@ -1,0 +1,74 @@
+dialog[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    
+    background-color: #ebebeb;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 .25rem #333,
+    0 0 0 .75rem  #8f8fff,
+    0 0 0 1rem #333;
+    
+    height: 50vh;
+    width: 50%;
+    max-width: 50rem;
+
+    top: 15dvh;
+    
+    padding: 2.5rem;
+    margin: 0 auto;
+outline: none;
+
+    animation: slide-in ease-in-out .7s;
+
+}
+
+dialog::backdrop {
+    background-color: #00000046;
+    transition: all ease-in-out .7s;
+}
+
+dialog h2 {
+    font-size: 2rem;
+}
+
+dialog p {
+    font-size: 1.5rem;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+dialog .--btn {
+    outline: none;
+    margin-top: auto;
+    width: 15rem;
+}
+
+@keyframes slide-in {
+    0% {
+        top: 115dvh;
+        &::backdrop {
+            background-color: none;
+        }
+    }
+
+    100% {
+        top: 15dvh;
+        &::backdrop {
+            background-color: #00000046;
+        }
+    }
+}
+@keyframes slide-out {
+    0% {
+        top: 15dvh;
+    }
+
+    100% {
+        top: 115dvh;
+    }
+}

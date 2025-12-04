@@ -1,5 +1,8 @@
 @import url(./board.css);
 @import url(./keyboard.css);
+@import url(./controls.css);
+@import url(./endscreen.css);
+@import url(./dark-mode.css);
 
 * {
     box-sizing: border-box;
@@ -16,7 +19,29 @@ body {
     touch-action: manipulation;
 }
 
-.grey {
+.--btn, .cell {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 4rem;
+    height: 4rem;
+    
+    border-radius: .5rem;
+    border: 2px solid #333;
+    box-shadow: -.25rem .25rem  #8f8fff, 
+                -.25rem .375rem #333,
+                -.375rem .25rem #333;
+
+    background-color: #ebebeb;
+    transition: .2s;
+}
+
+.--btn.grey, .cell.grey {
     background: #d7d7de;
     color: #757578;
     box-shadow: -.25rem .25rem  #a8a8b2, 
@@ -25,7 +50,7 @@ body {
 
 }
 
-.yellow {
+.--btn.yellow, .cell.yellow {
     background: #f4ebc1;
     color: #1f1f1f;
     box-shadow: -.25rem .25rem  #e2c236, 
@@ -33,7 +58,7 @@ body {
                 -.375rem .25rem #333;
 }
 
-.green {
+.--btn.green, .cell.green {
     background: #b9f4a0;
     color: #1f1f1f;
     box-shadow: -.25rem .25rem  #36b300, 
@@ -41,8 +66,27 @@ body {
                 -.375rem .25rem #333;
 }
 
-.check {
+.--btn.check, .cell.check {
     animation: .4s ease-in check
+}
+
+.--btn.pressed {
+    transform: translate(-.5rem, .5rem);
+    box-shadow: none;
+    animation: .3s ease-in press;
+}
+
+svg {
+    color: #1f1f1f;
+    stroke: #1f1f1f;
+
+    & path {
+        fill: #1f1f1f;
+    }
+}
+
+svg path.no-fill {
+    fill: none;
 }
 
 @keyframes check {
@@ -52,7 +96,25 @@ body {
     }
 }
 
+@keyframes press {
+    50% {
+        transform: translate(-.5rem, .5rem);
+        box-shadow: none;
+    }
+}
+
 @media screen and (max-width: 500px) {
+    .--btn {
+        font-size: 1rem;
+        
+        width: 1.5rem;
+        height: 3rem;
+
+        box-shadow: -.125rem .125rem  #8f8fff, 
+                    -.125rem .25rem #333,
+                    -.25rem .125rem #333;
+    }
+
     .grey {
         background: #d7d7de;
         color: #757578;
@@ -78,5 +140,3 @@ body {
                     -.25rem .125rem #333;
     }
 }
-
-

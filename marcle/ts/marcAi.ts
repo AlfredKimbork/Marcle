@@ -1,10 +1,15 @@
 import { possibleWords } from "./possibleWords/words.js";
-import { addLetter, moveMarked, checkWord, yellows, greens, greys, word } from "./script.js";
+import { addLetter, moveMarked, checkWord, yellows, greens, greys, word, row, gameStatus } from "./wordleLogic.js";
+import { thinkingDelay, writingDelay, marcActive, setMarcSpeed } from "./initiateGame.js";
+export const marcBtn = document.querySelector("#marc-btn") as HTMLButtonElement
+export const speedBtn = document.querySelector("#speed-btn") as HTMLButtonElement
+export const askMarc = document.querySelector("#ask-marc-btn") as HTMLButtonElement
 let possibleGuesses = possibleWords
 
 let i = 0;
 let guessIndex: number;
 let marcGuess: string;
+export let marcThinking: number
 
 const getGuess = () => {
         return possibleGuesses[Math.round(Math.random() * (possibleGuesses.length - 1))]
@@ -15,20 +20,27 @@ const writeGuess = () => {
     if (i < 5) {
         addLetter(marcGuessedLetter)
         moveMarked()
-        setTimeout(() => writeGuess(), 500)
+        setTimeout(() => writeGuess(), writingDelay * 10)
 
         i++
-    } else {
+    } else if (marcActive) {
         checkWord()
         moveMarked()
         i = 0
         
-        if(marcGuess != word) setTimeout(() => checkMarcGuess(), 5000)
+        if(!gameStatus) {
+            marcThinking = setTimeout(() => checkMarcGuess(), thinkingDelay * 100);
+        } 
+        // else {
+        //     setTimeout(() => window.location.reload(), 1000)
+        // }
+    } else {
+        i = 0
+        setMarcSpeed()
     }
-
 }
 
-const checkMarcGuess = () => {
+export const checkMarcGuess = () => {
     marcGuess = getGuess()
     guessIndex = possibleGuesses.indexOf(marcGuess);
     possibleGuesses.splice(guessIndex, 1)
@@ -91,6 +103,7 @@ const checkGreys = () => {
     }
 }
 
-checkMarcGuess()
+
+
 
 

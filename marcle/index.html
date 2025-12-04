@@ -1,50 +1,110 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Marcle</title>
     <link rel="stylesheet" href="css/style.css">
-    <script type="module" src="js/script.js" defer></script>
-    <script type="module" src="js/marcAi.js" defer></script>
+    <script type="module" src="js/initiateGame.js" defer></script>
 </head>
-<body>
+<body class="">
+    <div class="control-wrapper">
+        <button class="marc --btn" id="marc-btn">Auto</button>
+        <button class="marc --btn" id="speed-btn">1x</button>
+        <button class="marc --btn" id="ask-marc-btn">
+            <svg height="48px" width="48px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 279.682 279.682" xml:space="preserve">
+                <g>
+                    <path d="M143.25,55.486c-41.06,0-74.465,33.405-74.465,74.465c0,16.824,5.511,32.711,15.938,45.939
+                        c1.998,2.536,4.15,5.033,6.23,7.448c6.212,7.208,12.078,14.017,14.166,21.675c0.045,0.165,0.438,1.773,0.38,7.247l-0.01,0.791
+                        c-0.063,4.444-0.147,10.528,4.352,15.091c3.081,3.125,7.399,4.645,13.204,4.645h40.272c6.268,0,10.774-1.534,13.776-4.689
+                        c4.061-4.267,3.789-9.779,3.608-13.427c-0.032-0.645-0.066-1.296-0.074-1.944c-0.065-5.48,0.345-7.025,0.362-7.09
+                        c2.121-7.657,8.993-15.732,15.057-22.855c2.023-2.377,3.934-4.622,5.714-6.879c10.431-13.23,15.944-29.12,15.944-45.951
+                        C217.705,88.892,184.305,55.486,143.25,55.486z M189.982,166.614c-1.607,2.036-3.429,4.178-5.358,6.445
+                        c-7.07,8.307-15.084,17.722-18.089,28.572c-0.429,1.546-0.988,4.395-0.905,11.273c0.01,0.835,0.049,1.675,0.091,2.507
+                        c0.032,0.657,0.075,1.523,0.071,2.209c-0.528,0.086-1.325,0.166-2.475,0.166h-40.272c-1.276,0-2.022-0.135-2.405-0.237
+                        c-0.198-0.977-0.17-3.007-0.152-4.287l0.012-0.844c0.072-6.919-0.483-9.789-0.907-11.348c-2.98-10.936-10.575-19.749-17.275-27.524
+                        c-2.066-2.398-4.019-4.664-5.813-6.942c-8.32-10.557-12.718-23.232-12.718-36.654c0-32.789,26.676-59.465,59.465-59.465
+                        c32.783,0,59.455,26.676,59.455,59.465C202.705,143.379,198.306,156.058,189.982,166.614z"/>
+                    <path d="M161.766,239.564h-37.041c-7.995,0-14.5,6.505-14.5,14.5v11.117c0,7.995,6.505,14.5,14.5,14.5
+                        h37.041c7.995,0,14.5-6.505,14.5-14.5v-11.117C176.266,246.069,169.761,239.564,161.766,239.564z M161.266,264.682h-36.041v-10.117
+                        h36.041V264.682z"/>
+                    <path d="M143.245,45.779c4.143,0,7.5-3.357,7.5-7.5V7.5c0-4.143-3.357-7.5-7.5-7.5
+                        c-4.143,0-7.5,3.357-7.5,7.5v30.779C135.745,42.422,139.103,45.779,143.245,45.779z"/>
+                    <path d="M241.917,34.598c-2.858-2.995-7.606-3.106-10.604-0.248l-22.77,21.73
+                        c-2.997,2.859-3.107,7.607-0.248,10.604c1.474,1.544,3.448,2.322,5.427,2.322c1.86,0,3.725-0.688,5.177-2.074l22.77-21.731
+                        C244.666,42.342,244.776,37.594,241.917,34.598z"/>
+                    <path d="M264.273,109.599c-0.004,0-0.008,0-0.012,0l-29.311,0.047c-4.143,0.007-7.495,3.37-7.488,7.512
+                        c0.007,4.139,3.363,7.488,7.5,7.488c0.004,0,0.008,0,0.012,0l29.311-0.047c4.143-0.007,7.495-3.37,7.488-7.512
+                        C271.767,112.948,268.41,109.599,264.273,109.599z"/>
+                    <path d="M74.386,64.684c2.859-2.996,2.749-7.743-0.248-10.604l-22.77-21.73
+                        c-2.994-2.858-7.742-2.749-10.604,0.248c-2.859,2.996-2.749,7.743,0.248,10.604l22.77,21.731c1.452,1.386,3.315,2.074,5.177,2.074
+                        C70.937,67.006,72.912,66.228,74.386,64.684z"/>
+                    <path d="M44.729,109.646l-29.31-0.047c-0.004,0-0.008,0-0.012,0c-4.137,0-7.493,3.351-7.5,7.488
+                        c-0.007,4.142,3.346,7.505,7.488,7.512l29.31,0.047c0.004,0,0.008,0,0.012,0c4.137,0,7.493-3.351,7.5-7.488
+                        C52.225,113.016,48.872,109.652,44.729,109.646z"/>
+                </g>
+            </svg>
+        </button>
+        <button class="marc --btn" id="mode-btn">
+            <svg width="32px" height="32px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <g id="Lager_94" data-name="Lager 94" transform="translate(0)">
+                    <path id="Path_70" data-name="Path 70" d="M12.516,4.509A12,12,0,0,0,22.3,19.881,12.317,12.317,0,0,0,24,20a11.984,11.984,0,0,0,3.49-.514,12.1,12.1,0,0,1-9.963,8.421A12.679,12.679,0,0,1,16,28,12,12,0,0,1,12.516,4.509M16,0a16.5,16.5,0,0,0-2.212.15A16,16,0,0,0,16,32a16.526,16.526,0,0,0,2.01-.123A16.04,16.04,0,0,0,31.85,18.212,16.516,16.516,0,0,0,32,15.944,1.957,1.957,0,0,0,30,14a2.046,2.046,0,0,0-1.23.413A7.942,7.942,0,0,1,24,16a8.35,8.35,0,0,1-1.15-.08,7.995,7.995,0,0,1-5.264-12.7A2.064,2.064,0,0,0,16.056,0Z" fill="#1f1f1f"/>
+                </g>
+            </svg>
+        </button>
+    </div>
     <div class="wordle-wrapper" id="wordle-wrapper"></div>
     <div class="keyboard-wrapper" id="keyboard">
         <div>
-            <button class="keyboard-btn" id="KeyQ">q</button>
-            <button class="keyboard-btn" id="KeyW">w</button>
-            <button class="keyboard-btn" id="KeyE">e</button>
-            <button class="keyboard-btn" id="KeyR">r</button>
-            <button class="keyboard-btn" id="KeyT">t</button>
-            <button class="keyboard-btn" id="KeyY">y</button>
-            <button class="keyboard-btn" id="KeyU">u</button>
-            <button class="keyboard-btn" id="KeyI">i</button>
-            <button class="keyboard-btn" id="KeyO">o</button>
-            <button class="keyboard-btn" id="KeyP">p</button>
+            <button class="keyboard --btn" id="KeyQ">q</button>
+            <button class="keyboard --btn" id="KeyW">w</button>
+            <button class="keyboard --btn" id="KeyE">e</button>
+            <button class="keyboard --btn" id="KeyR">r</button>
+            <button class="keyboard --btn" id="KeyT">t</button>
+            <button class="keyboard --btn" id="KeyY">y</button>
+            <button class="keyboard --btn" id="KeyU">u</button>
+            <button class="keyboard --btn" id="KeyI">i</button>
+            <button class="keyboard --btn" id="KeyO">o</button>
+            <button class="keyboard --btn" id="KeyP">p</button>
         </div>
         <div>
-            <button class="keyboard-btn" id="KeyA">a</button>
-            <button class="keyboard-btn" id="KeyS">s</button>
-            <button class="keyboard-btn" id="KeyD">d</button>
-            <button class="keyboard-btn" id="KeyF">f</button>
-            <button class="keyboard-btn" id="KeyG">g</button>
-            <button class="keyboard-btn" id="KeyH">h</button>
-            <button class="keyboard-btn" id="KeyJ">j</button>
-            <button class="keyboard-btn" id="KeyK">k</button>
-            <button class="keyboard-btn" id="KeyL">l</button>
+            <button class="keyboard --btn" id="KeyA">a</button>
+            <button class="keyboard --btn" id="KeyS">s</button>
+            <button class="keyboard --btn" id="KeyD">d</button>
+            <button class="keyboard --btn" id="KeyF">f</button>
+            <button class="keyboard --btn" id="KeyG">g</button>
+            <button class="keyboard --btn" id="KeyH">h</button>
+            <button class="keyboard --btn" id="KeyJ">j</button>
+            <button class="keyboard --btn" id="KeyK">k</button>
+            <button class="keyboard --btn" id="KeyL">l</button>
         </div>
         <div>
-            <button class="keyboard-btn --delete" id="backspace"><img src="./img/backspace-svgrepo-com.svg" alt="Backspace"></button>
-            <button class="keyboard-btn" id="KeyZ">z</button>
-            <button class="keyboard-btn" id="KeyX">x</button>
-            <button class="keyboard-btn" id="KeyC">c</button>
-            <button class="keyboard-btn" id="KeyV">v</button>
-            <button class="keyboard-btn" id="KeyB">b</button>
-            <button class="keyboard-btn" id="KeyN">n</button>
-            <button class="keyboard-btn" id="KeyM">m</button>
-            <button class="keyboard-btn --enter" id="enter"><img src="./img/arrow-enter-svgrepo-com.svg" alt="Enter"></button>
+            <button class="keyboard --btn --delete" id="backspace">
+                <svg width="64px" height="64px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.91006 12.6651L8.35606 15.5261C8.59533 15.82 8.95209 15.9935 9.33106 16.0001L13.0501 15.9931H16.2391C18.0288 16.0036 19.4885 14.5618 19.5001 12.7721V10.2221C19.4891 8.43193 18.0292 6.98953 16.2391 7.00006L9.33106 7.00706C8.95226 7.01341 8.59552 7.18647 8.35606 7.48006L5.91006 10.3421C5.36331 11.0199 5.36331 11.9872 5.91006 12.6651V12.6651Z" fill="none"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="no-fill"/>
+                    <path d="M12.1603 9.46359C11.864 9.17409 11.3892 9.17957 11.0997 9.47582C10.8102 9.77207 10.8156 10.2469 11.1119 10.5364L12.1603 9.46359ZM12.6469 12.0364C12.9431 12.3259 13.418 12.3204 13.7075 12.0242C13.997 11.7279 13.9915 11.2531 13.6953 10.9636L12.6469 12.0364ZM13.6963 10.9646C13.4006 10.6745 12.9258 10.6791 12.6357 10.9748C12.3456 11.2705 12.3502 11.7453 12.6458 12.0354L13.6963 10.9646ZM14.1748 13.5354C14.4705 13.8255 14.9454 13.8209 15.2355 13.5252C15.5255 13.2295 15.521 12.7547 15.2253 12.4646L14.1748 13.5354ZM13.6953 12.0364C13.9915 11.7469 13.997 11.2721 13.7075 10.9758C13.418 10.6796 12.9431 10.6741 12.6469 10.9636L13.6953 12.0364ZM11.1119 12.4636C10.8156 12.7531 10.8102 13.2279 11.0997 13.5242C11.3892 13.8204 11.864 13.8259 12.1603 13.5364L11.1119 12.4636ZM12.6458 10.9646C12.3502 11.2547 12.3456 11.7295 12.6357 12.0252C12.9258 12.3209 13.4006 12.3255 13.6963 12.0354L12.6458 10.9646ZM15.2253 10.5354C15.521 10.2453 15.5255 9.77046 15.2355 9.47477C14.9454 9.17909 14.4705 9.17454 14.1748 9.46462L15.2253 10.5354ZM11.1119 10.5364L12.6469 12.0364L13.6953 10.9636L12.1603 9.46359L11.1119 10.5364ZM12.6458 12.0354L14.1748 13.5354L15.2253 12.4646L13.6963 10.9646L12.6458 12.0354ZM12.6469 10.9636L11.1119 12.4636L12.1603 13.5364L13.6953 12.0364L12.6469 10.9636ZM13.6963 12.0354L15.2253 10.5354L14.1748 9.46462L12.6458 10.9646L13.6963 12.0354Z" fill="none"  class="no-fill"/>
+                </svg>
+            </button>
+            <button class="keyboard --btn" id="KeyZ">z</button>
+            <button class="keyboard --btn" id="KeyX">x</button>
+            <button class="keyboard --btn" id="KeyC">c</button>
+            <button class="keyboard --btn" id="KeyV">v</button>
+            <button class="keyboard --btn" id="KeyB">b</button>
+            <button class="keyboard --btn" id="KeyN">n</button>
+            <button class="keyboard --btn" id="KeyM">m</button>
+            <button class="keyboard --btn --enter" id="enter">
+                <svg width="48" height="48" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="🔍-System-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="ic_fluent_arrow_enter_24_filled" fill="#1f1f1f" fill-rule="nonzero">
+                            <path d="M21,4 C21.5128358,4 21.9355072,4.38604019 21.9932723,4.88337887 L22,5 L22,11.5 C22,13.3685634 20.5357224,14.8951264 18.6920352,14.9948211 L18.5,15 L5.415,15 L8.70710678,18.2928932 C9.06759074,18.6533772 9.09532028,19.2206082 8.79029539,19.6128994 L8.70710678,19.7071068 C8.34662282,20.0675907 7.77939176,20.0953203 7.38710056,19.7902954 L7.29289322,19.7071068 L2.29289322,14.7071068 C2.25749917,14.6717127 2.22531295,14.6343256 2.19633458,14.5953066 L2.12467117,14.4840621 L2.12467117,14.4840621 L2.07122549,14.371336 L2.07122549,14.371336 L2.03584514,14.265993 L2.03584514,14.265993 L2.0110178,14.1484669 L2.0110178,14.1484669 L2.00397748,14.0898018 L2.00397748,14.0898018 L2,14 L2.00278786,13.9247615 L2.00278786,13.9247615 L2.02024007,13.7992742 L2.02024007,13.7992742 L2.04973809,13.6878575 L2.04973809,13.6878575 L2.09367336,13.5767785 L2.09367336,13.5767785 L2.14599545,13.4792912 L2.14599545,13.4792912 L2.20970461,13.3871006 L2.20970461,13.3871006 L2.29289322,13.2928932 L2.29289322,13.2928932 L7.29289322,8.29289322 C7.68341751,7.90236893 8.31658249,7.90236893 8.70710678,8.29289322 C9.06759074,8.65337718 9.09532028,9.22060824 8.79029539,9.61289944 L8.70710678,9.70710678 L5.415,13 L18.5,13 C19.2796961,13 19.9204487,12.4051119 19.9931334,11.64446 L20,11.5 L20,5 C20,4.44771525 20.4477153,4 21,4 Z" id="🎨-Color"></path>
+                        </g>
+                    </g>
+                </svg>
+            </button>
         </div>
     </div>
+
+    <dialog id="endscreen">
+    </dialog>
 </body>
 </html>
