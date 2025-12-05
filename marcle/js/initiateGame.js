@@ -20,7 +20,7 @@ export const setMarcSpeed = () => {
             thinkingDelay = 10;
             writingDelay = 100;
             break;
-        case "2x":
+        case "5x":
             speedBtn.innerHTML = "5x";
             thinkingDelay = 2;
             writingDelay = 20;
@@ -43,12 +43,12 @@ speedBtn.addEventListener("click", () => {
     }, 500);
     switch (currentSpeed) {
         case "1x":
-            speedBtn.innerHTML = "2x";
-            thinkingDelay = 5;
-            writingDelay = 50;
-            localStorage.setItem("marcSpeed", "2x");
+            speedBtn.innerHTML = "5x";
+            thinkingDelay = 2;
+            writingDelay = 20;
+            localStorage.setItem("marcSpeed", "5x");
             break;
-        case "2x":
+        case "5x":
             speedBtn.innerHTML = "10x";
             thinkingDelay = 1;
             writingDelay = 10;

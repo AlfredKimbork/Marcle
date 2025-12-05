@@ -106,7 +106,7 @@ export let row = 0;
     const endscreen = document.querySelector("#endscreen") as HTMLDialogElement;
     export const word = getWord();
     export let greens: {"letter":string, "position": number}[] = [];
-    export let yellows: string[] = [];
+    export let yellows: {"letter":string, "position": number}[] = [];
     export let greys: {"letter":string, "position": number}[] = [];
 
     export const checkWord = () => {
@@ -132,7 +132,7 @@ export let row = 0;
                 
                 missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], "");
                 guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
-                greens.push({"letter": guessedLetter.innerText, "position": i})
+                greens.push({"letter": guessedLetter.innerText, "position": i});
                 
                 
                 amountDeleted++;
@@ -149,7 +149,7 @@ export let row = 0;
                 missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
                 guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
                 
-                yellows.push(guessedLetter.innerText)
+                yellows.push({"letter": guessedLetter.innerText, "position": i});
                 
                 j++
                 amountDeleted++

@@ -135,7 +135,7 @@ export const checkWord = () => {
             });
             missingLetters = missingLetters.replace(guessedWord[j - amountDeleted], " ");
             guessedWord = guessedWord.replace(guessedWord[j - amountDeleted], "");
-            yellows.push(guessedLetter.innerText);
+            yellows.push({ "letter": guessedLetter.innerText, "position": i });
             j++;
             amountDeleted++;
         }

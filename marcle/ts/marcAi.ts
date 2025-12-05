@@ -31,9 +31,6 @@ const writeGuess = () => {
         if(!gameStatus) {
             marcThinking = setTimeout(() => checkMarcGuess(), thinkingDelay * 100);
         } 
-        // else {
-        //     setTimeout(() => window.location.reload(), 1000)
-        // }
     } else {
         i = 0
         setMarcSpeed()
@@ -59,6 +56,7 @@ const checkGreens = () => {
             valid++
             if(valid == greens.length) {
                 if (yellows.length > 0) checkYellows()
+                    else if (greys.length > 0) checkGreys()
                 else {
                     writeGuess()
                 }
@@ -73,7 +71,7 @@ const checkGreens = () => {
 const checkYellows = () => {
     let valid = 0
     for (let j = 0; j < yellows.length; j++) {
-        if (marcGuess.includes(yellows[j])) {
+        if (marcGuess.includes(yellows[j].letter) && yellows[j].letter != marcGuess[yellows[j].position]) {
             valid++
             if(valid == yellows.length) {
                 if (greys.length > 0) checkGreys()

@@ -22,7 +22,6 @@ dialog[open] {
 outline: none;
 
     animation: slide-in ease-in-out .7s;
-
 }
 
 dialog::backdrop {
@@ -48,6 +47,11 @@ dialog .--btn {
     width: 15rem;
 }
 
+.dark-mode dialog[open] {
+    color: #ebebeb;
+    background-color: #3f3f3f;
+}
+
 @keyframes slide-in {
     0% {
         top: 115dvh;
@@ -63,6 +67,7 @@ dialog .--btn {
         }
     }
 }
+
 @keyframes slide-out {
     0% {
         top: 15dvh;
@@ -70,5 +75,11 @@ dialog .--btn {
 
     100% {
         top: 115dvh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    dialog[open] {
+        width: 75%;
     }
 }

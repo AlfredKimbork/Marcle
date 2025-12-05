@@ -24,7 +24,7 @@ keyboardBtns.forEach(keyboardBtn => {
                 thinkingDelay = 10;
                 writingDelay = 100;
                 break;
-            case "2x":
+            case "5x":
                 speedBtn.innerHTML = "5x"
                 thinkingDelay = 2;
                 writingDelay = 20;
@@ -50,14 +50,14 @@ keyboardBtns.forEach(keyboardBtn => {
 
         switch (currentSpeed) {
             case "1x":
-                speedBtn.innerHTML = "2x"
+                speedBtn.innerHTML = "5x"
                 
-                thinkingDelay = 5;
-                writingDelay = 50;
+                thinkingDelay = 2;
+                writingDelay = 20;
 
-                localStorage.setItem("marcSpeed", "2x")
+                localStorage.setItem("marcSpeed", "5x")
                 break;
-            case "2x":
+            case "5x":
                 speedBtn.innerHTML = "10x"
                 
                 thinkingDelay = 1;

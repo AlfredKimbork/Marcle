@@ -36,7 +36,7 @@
 
 .dark-mode .--btn.yellow, .dark-mode .cell.yellow {
     background: #b99d1f;
-    color: #1f1f1f;
+    color: #ebebeb;
     box-shadow: -.25rem .25rem  #826d06, 
                 -.25rem .375rem #222,
                 -.375rem .25rem #222;
@@ -44,7 +44,7 @@
 
 .dark-mode .--btn.green, .dark-mode .cell.green {
     background: #2f8607;
-    color: #1f1f1f;
+    color: #ebebeb;
     box-shadow: -.25rem .25rem  #1e5c03, 
                 -.25rem .375rem #222,
                 -.375rem .25rem #222;
