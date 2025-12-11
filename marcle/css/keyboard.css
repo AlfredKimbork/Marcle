@@ -10,7 +10,7 @@
     pointer-events: none;
 }
 
-.--delete, .--enter {
+#backspace, #enter {
     width: 6rem;
 }
 
@@ -30,7 +30,7 @@
         transform: scale(.5);
     }
 
-    .--delete, .--enter {
+    #backspace, #enter {
         width: 3rem;
     }
 }
