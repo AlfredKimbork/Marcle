@@ -149,6 +149,11 @@ const checkIfValid = () => {
                 yellowValid = false;
                 break;
             }
+            if (!yellowValid) {
+                if (marcGuess == word)
+                    console.log("doesn't contain yellow letter", yellow.letter);
+                break;
+            }
         }
     }
     else {
