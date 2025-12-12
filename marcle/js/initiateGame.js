@@ -1,5 +1,5 @@
 import { activeKeyboard, activeKeyboardFinger, keyboardBtns, createBoard } from "./wordleLogic.js";
-import { marcBtn, speedBtn, marcThinking, checkMarcGuess, askMarc } from "./marcAI.js";
+import { marcBtn, speedBtn, marcThinking, checkMarcGuess, askMarc } from "./marcAi.js";
 import { modeToggle } from "./switchMode.js";
 document.addEventListener("keyup", activeKeyboard);
 keyboardBtns.forEach(keyboardBtn => {

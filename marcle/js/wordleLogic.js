@@ -109,55 +109,58 @@ export const checkWord = () => {
     let missingLetters = word;
     let j = 0;
     let amountDeleted = 0;
-    guessedLetters.forEach((guessedLetter) => {
-        guessedWord += guessedLetter.innerText;
+    guessedLetters.forEach(guessedLetter => {
+        guessedWord += guessedLetter.innerText.toLowerCase();
     });
     if (possibleWord.indexOf(guessedWord) >= 0) {
         guessedLetters.forEach((guessedLetter, i) => {
-            if (guessedLetter.innerText == word[i]) {
+            let guessedLetterContent = guessedLetter.innerHTML.toLowerCase();
+            if (guessedLetterContent == word[i]) {
                 guessedLetter.classList.add("green", "check");
                 setTimeout(() => {
                     guessedLetter.classList.remove("check");
                 }, 500);
                 keyboardBtns.forEach(btn => {
-                    if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
+                    if (btn.id == `Key${guessedLetterContent.toUpperCase()}`)
                         btn.classList.add("green", "check");
                 });
                 missingLetters = missingLetters.replace(guessedWord[i - amountDeleted], "");
                 guessedWord = guessedWord.replace(guessedWord[i - amountDeleted], "");
-                greens.push({ "letter": guessedLetter.innerText, "position": i });
+                greens.push({ "letter": guessedLetterContent, "position": i });
                 amountDeleted++;
                 j++;
             }
         });
         guessedLetters.forEach((guessedLetter, i) => {
-            if (missingLetters.includes(guessedLetter.innerText)) {
+            let guessedLetterContent = guessedLetter.innerHTML.toLowerCase();
+            if (missingLetters.includes(guessedLetterContent)) {
                 guessedLetter.classList.add("yellow", "check");
                 setTimeout(() => {
                     guessedLetter.classList.remove("check");
                 }, 500);
                 keyboardBtns.forEach(btn => {
-                    if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
+                    if (btn.id == `Key${guessedLetterContent.toLocaleUpperCase()}`)
                         btn.classList.add("yellow", "check");
                 });
                 missingLetters = missingLetters.replace(guessedWord[i - amountDeleted], " ");
                 guessedWord = guessedWord.replace(guessedWord[i - amountDeleted], "");
-                yellows.push({ "letter": guessedLetter.innerText, "position": i });
+                yellows.push({ "letter": guessedLetterContent, "position": i });
                 j++;
                 amountDeleted++;
             }
-            else {
-                guessedLetter.classList.add("grey", "check");
-                greys.push({ "letter": guessedLetter.innerText, "position": i });
-                setTimeout(() => {
-                    guessedLetter.classList.remove("check");
-                }, 500);
-                keyboardBtns.forEach(btn => {
-                    if (btn.id == `Key${guessedLetter.innerText.toLocaleUpperCase()}`)
-                        btn.classList.add("grey", "check");
-                });
-                j++;
-            }
+        });
+        guessedLetters.forEach((guessedLetter, i) => {
+            let guessedLetterContent = guessedLetter.innerHTML.toLowerCase();
+            guessedLetter.classList.add("grey", "check");
+            greys.push({ "letter": guessedLetterContent, "position": i });
+            setTimeout(() => {
+                guessedLetter.classList.remove("check");
+            }, 500);
+            keyboardBtns.forEach(btn => {
+                if (btn.id == `Key${guessedLetterContent.toLocaleUpperCase()}`)
+                    btn.classList.add("grey", "check");
+            });
+            j++;
         });
         keyboardBtns.forEach(btn => {
             if (btn.id == "enter")
@@ -167,7 +170,7 @@ export const checkWord = () => {
             }, 500);
         });
         guessedLetters.forEach((guessedLetter) => {
-            guessedWord += guessedLetter.innerText;
+            guessedWord += guessedLetter.innerText.toLowerCase();
         });
         let winstreak;
         if (guessedWord == word) {
@@ -183,7 +186,7 @@ export const checkWord = () => {
             });
             endscreen.innerHTML = `
                     <h2>You got the word!</h2>
-                    <p>the word was <span class="bold">${word}</span>!</p>
+                    <p>the word was <span class="bold">${word.toUpperCase()}</span>!</p>
                     <p>you now have a winstreak of ${winstreak}</p>
                     `;
         }

@@ -23,6 +23,7 @@ body {
     font-size: 2rem;
     font-weight: 600;
     color: #333;
+    text-transform: uppercase;
 
     display: flex;
     justify-content: center;
@@ -79,6 +80,8 @@ body {
 svg {
     color: #1f1f1f;
     stroke: #1f1f1f;
+
+    pointer-events: none;
 
     & path {
         fill: #1f1f1f;
